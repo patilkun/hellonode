@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hellonodeapi
+  name: hellonodeapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hellonodeapi
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hellonodeapi
+    spec:
+      containers:
+      - image: 464340070458.dkr.ecr.us-east-1.amazonaws.com/eksws-ecrdo-ylk1nd2hhacb:v1
+        name: hellonodeapi
+        imagePullPolicy: IfNotPresent
+        resources: {}
+        ports:
+          - containerPort: 3000 
+status: {}
