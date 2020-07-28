@@ -2,7 +2,7 @@ pipeline {
     environment {
         registryCredential = 'awsCredential'
         dockerImage = ''
-        version = 'latest'
+        version = 'v1'
         IMAGE = ''
         appName = 'hellonodelatest'	
         imageTag = 'v1'
@@ -17,8 +17,9 @@ pipeline {
                 script {
                     IMAGE = "$appName:$version"
                     echo IMAGE
+                    dockerImage = docker.build(IMAGE)
                     sh 'ls'
-                    sh 'docker version'
+                    sh 'docker images'
                 }
             }
         }
