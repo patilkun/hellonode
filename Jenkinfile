@@ -7,7 +7,7 @@ pipeline {
         appName = 'hellonodelatest'	
         imageTag = 'v1'
         ecrurl = '464340070458.dkr.ecr.us-east-1.amazonaws.com'
-        ecrfolder = 'hellonodelatest-ecr'
+        ecrfolder = 'eksws-ecrdo-ylk1nd2hhacb'
     }
     agent any
 
