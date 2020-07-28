@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     IMAGE = "$appName:$version"
-                    echo $IMAGE
+                    echo IMAGE
                     sh 'ls'
                     sh 'docker version'
                 }
