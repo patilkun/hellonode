@@ -1,11 +1,25 @@
 pipeline {
+    environment {
+        registryCredential = 'awsCredential'
+        dockerImage = ''
+        version = 'latest'
+        IMAGE = ''
+        appName = 'hellonodelatest'	
+        imageTag = 'v1'
+        ecrurl = '164506192075.dkr.ecr.us-east-1.amazonaws.com'
+        ecrfolder = 'renewables-uai3036814-hybrid-arch-dev-ecr'
+    }
     agent any
 
     stages {
         stage('Hello') {
             steps {
-                sh 'ls'
-                sh 'docker version'
+                script {
+                    IMAGE = "$appName:$version"
+                    echo $IMAGE
+                    sh 'ls'
+                    sh 'docker version'
+                }
             }
         }
     }
