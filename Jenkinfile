@@ -6,13 +6,13 @@ pipeline {
         IMAGE = ''
         appName = 'hellonodelatest'	
         imageTag = 'v1'
-        ecrurl = '164506192075.dkr.ecr.us-east-1.amazonaws.com'
-        ecrfolder = 'renewables-uai3036814-hybrid-arch-dev-ecr'
+        ecrurl = '464340070458.dkr.ecr.us-east-1.amazonaws.com'
+        ecrfolder = 'hellonodelatest-ecr'
     }
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Docker Build') {
             steps {
                 script {
                     IMAGE = "$appName:$version"
@@ -23,5 +23,15 @@ pipeline {
                 }
             }
         }
+        stage('Push to AWS ECR') {
+			steps{
+				script {
+				    sh("eval \$(aws ecr get-login --no-include-email | sed 's|https://||')")
+					sh('docker tag  "${IMAGE} ${ecrurl}/${ecrfolder}:${imageTag}"')
+					sh('docker push "${ecrurl}/${ecrfolder}:${imageTag}"')
+				}
+			}
+		}
+
     }
 }
