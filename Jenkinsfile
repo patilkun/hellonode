@@ -15,6 +15,7 @@ pipeline {
         stage('Docker Build') {
             withKubeConfig([credentialsId: 'eksiam', serverUrl: 'https://5DFF629FA8CBBDE28F819443A060988F.gr7.us-east-1.eks.amazonaws.com']) {
             sh 'kubectl get pods'
+            }
         }
             // steps {
             //     script {
@@ -46,5 +47,5 @@ pipeline {
 		// 	}
 		// }
 
-    }
+    // }
 }
